@@ -15,7 +15,7 @@ class DroidPathFinderServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(DroidPathFinder::class, function ($app) {
-            return new DroidPathFinder('https://deathstar.dev-tests.vp-ops.com/alliance.php');
+            return new DroidPathFinder(config('services.rebel_alliance.api_url'));
         });
     }
 }
