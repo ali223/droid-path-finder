@@ -12,17 +12,15 @@ class FindPath extends Command
 
     protected $description = 'Find the droid\'s path to the destination';
 
-    public function handle()
+    public function handle(DroidPathFinder $droidPathFinder)
     {
-        $pathFinder = new DroidPathFinder('https://deathstar.dev-tests.vp-ops.com/alliance.php');
-
-        foreach ($pathFinder->navigatePath() as $pathStatus) {
+        foreach ($droidPathFinder->navigatePath() as $pathStatus) {
             $this->info($pathStatus);
         }
 
         $this->info('*********************************');
         $this->info('Droid Path');
         $this->info('*********************************');
-        $this->info($pathFinder->getPath());
+        $this->info($droidPathFinder->getPath());
     }
 }
