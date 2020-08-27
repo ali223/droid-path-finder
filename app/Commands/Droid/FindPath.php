@@ -2,6 +2,7 @@
 
 namespace App\Commands\Droid;
 
+use App\Services\DroidPathFinder;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
@@ -13,6 +14,15 @@ class FindPath extends Command
 
     public function handle()
     {
-        $this->info('test path');
+        $pathFinder = new DroidPathFinder('https://deathstar.dev-tests.vp-ops.com/alliance.php');
+
+        foreach ($pathFinder->navigatePath() as $pathStatus) {
+            $this->info($pathStatus);
+        }
+
+        $this->info('*********************************');
+        $this->info('Droid Path');
+        $this->info('*********************************');
+        $this->info($pathFinder->getPath());
     }
 }
