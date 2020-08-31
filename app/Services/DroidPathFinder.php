@@ -16,6 +16,9 @@ class DroidPathFinder
     public function __construct(string $apiUrl)
     {
         $this->apiUrl = $apiUrl;
+        $this->path = '';
+        $this->lastMapLine = '';
+        $this->lastCrashMapLine = '';
     }
 
     public function navigatePath(): Generator
